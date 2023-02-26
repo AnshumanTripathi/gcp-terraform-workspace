@@ -23,6 +23,6 @@ resource "google_service_account" "terraform_former" {
 
 resource "google_service_account_iam_member" "terraform_former_iam_policy" {
   service_account_id = google_service_account.terraform_former.id
-  member             = "serviceaccount:${google_service_account.terraform_former.name}"
+  member             = "serviceAccount:${google_service_account.terraform_former.name}"
   role               = "roles/owner"
 }
