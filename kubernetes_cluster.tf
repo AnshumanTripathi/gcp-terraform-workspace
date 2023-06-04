@@ -23,7 +23,7 @@ module "kubernetes-engine" {
   node_pools = [
     {
       name               = "node-pool"
-      machine_type       = "n2-standard-8"
+      machine_type       = "n2-standard-4"
       node_locations     = "us-central1-b,us-central1-c"
       min_count          = 1
       max_count          = 30
