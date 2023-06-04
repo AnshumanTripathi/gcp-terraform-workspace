@@ -9,8 +9,8 @@ module "kubernetes-engine" {
   release_channel                 = "STABLE"
   enable_private_endpoint         = true
   # Network config
-  ip_range_pods                   = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[0].ip_cidr_range
-  ip_range_services               = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[1].ip_cidr_range
+  ip_range_pods                   = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[0].range_name
+  ip_range_services               = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[1].range_name
   master_ipv4_cidr_block          = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[2].ip_cidr_range
   network                         = google_compute_network.vpc_network.name
   subnetwork                      = google_compute_subnetwork.kubernetes_subnet.name
