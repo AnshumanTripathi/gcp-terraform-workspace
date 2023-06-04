@@ -5,3 +5,24 @@ resource "google_compute_network" "vpc_network" {
   routing_mode            = "GLOBAL"
   auto_create_subnetworks = false
 }
+
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork
+resource "google_compute_subnetwork" "kubernetes_subnet" {
+  name                     = "kubernetes-subnet"
+  ip_cidr_range            = "10.0.0.0/20"
+  region                   = "us-central1"
+  network                  = google_compute_network.vpc_network.id
+  private_ip_google_access = true
+  secondary_ip_range {
+    range_name    = "pods"
+    ip_cidr_range = "10.0.0.0/21"
+  }
+  secondary_ip_range {
+    range_name    = "services"
+    ip_cidr_range = "10.0.8.0/22"
+  }
+  secondary_ip_range {
+    range_name    = "control-plane"
+    ip_cidr_range = "10.0.12.0/28"
+  }
+}
