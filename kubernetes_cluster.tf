@@ -15,7 +15,7 @@ module "kubernetes-engine" {
   network                         = google_compute_network.vpc_network.name
   subnetwork                      = google_compute_subnetwork.kubernetes_subnet.name
   # Node pool config
-  initial_node_count              = 4
+  initial_node_count              = 1
   default_max_pods_per_node       = 64
 #  compute_engine_service_account  = google_service_account.kubernetes_service_account.email
   enable_vertical_pod_autoscaling = true
