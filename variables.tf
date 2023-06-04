@@ -6,7 +6,7 @@ locals {
     "iam.googleapis.com",
     "compute.googleapis.com",
   ]
-  gke_cluster_config = {
+  environment_config = {
     region = "us-central1"
   }
 }

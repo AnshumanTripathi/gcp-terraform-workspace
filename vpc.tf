@@ -10,7 +10,7 @@ resource "google_compute_network" "vpc_network" {
 resource "google_compute_subnetwork" "kubernetes_subnet" {
   name                     = "kubernetes-subnet"
   ip_cidr_range            = "10.0.0.0/20"
-  region                   = "us-central1"
+  region                   = local.environment_config.region
   network                  = google_compute_network.vpc_network.id
   private_ip_google_access = true
   secondary_ip_range {
