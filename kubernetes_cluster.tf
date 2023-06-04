@@ -7,7 +7,7 @@ module "kubernetes-engine" {
   region                          = local.environment_config.region
   regional                        = true
   release_channel                 = "STABLE"
-  enable_private_endpoint         = true
+  enable_private_endpoint         = false
   # Network config
   ip_range_pods                   = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[0].range_name
   ip_range_services               = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[1].range_name
