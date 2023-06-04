@@ -9,6 +9,7 @@ locals {
     "logging.googleapis.com",
     "monitoring.googleapis.com",
     "containerregistry.googleapis.com",
+    "iap.googleapis.com",
     "binaryauthorization.googleapis.com",
   ]
   environment_config = {
