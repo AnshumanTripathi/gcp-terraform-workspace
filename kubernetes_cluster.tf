@@ -1,33 +1,27 @@
 # https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/tree/v26.1.1#terraform-kubernetes-engine-module
 module "kubernetes-engine" {
   # Cluster config
-  source                     = "terraform-google-modules/kubernetes-engine/google//modules/safer-cluster"
-  version                    = " ~> 26.1.1"
-  name                       = local.gke_cluster.name
-  project_id                 = local.environment_config.google_project
-  region                     = local.environment_config.region
-  regional                   = true
-  release_channel            = "UNSPECIFIED"
-  enable_private_endpoint    = false
-  master_authorized_networks = [
-    {
-      cidr_block   = "${module.bastion.ip_address}/32"
-      display_name = "Bastion Host"
-    }
-  ]
+  source                  = "terraform-google-modules/kubernetes-engine/google//modules/safer-cluster"
+  version                 = " ~> 26.1.1"
+  name                    = local.gke_cluster.name
+  project_id              = local.environment_config.google_project
+  region                  = local.environment_config.region
+  regional                = true
+  enable_private_endpoint = false
+  release_channel         = "UNSPECIFIED"
   # Network config
-  ip_range_pods                   = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[0].range_name
-  ip_range_services               = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[1].range_name
-  master_ipv4_cidr_block          = "10.1.0.0/28"
-  network                         = google_compute_network.vpc_network.name
-  subnetwork                      = google_compute_subnetwork.kubernetes_subnet.name
+  ip_range_pods          = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[0].range_name
+  ip_range_services      = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[1].range_name
+  master_ipv4_cidr_block = "10.1.0.0/28"
+  network                = google_compute_network.vpc_network.name
+  subnetwork             = google_compute_subnetwork.kubernetes_subnet.name
   # Node pool config
-  initial_node_count              = 2
-  default_max_pods_per_node       = 64
+  initial_node_count        = 2
+  default_max_pods_per_node = 64
   #  compute_engine_service_account  = google_service_account.kubernetes_service_account.email
   enable_vertical_pod_autoscaling = true
   horizontal_pod_autoscaling      = true
-  node_pools                      = [
+  node_pools = [
     {
       name               = "node-pool"
       machine_type       = "n1-standard-4"
