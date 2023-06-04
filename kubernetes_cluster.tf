@@ -11,7 +11,7 @@ module "kubernetes-engine" {
   # Network config
   ip_range_pods                   = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[0].range_name
   ip_range_services               = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[1].range_name
-  master_ipv4_cidr_block          = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[2].ip_cidr_range
+  master_ipv4_cidr_block          = "10.1.0.0/28"
   network                         = google_compute_network.vpc_network.name
   subnetwork                      = google_compute_subnetwork.kubernetes_subnet.name
   # Node pool config
