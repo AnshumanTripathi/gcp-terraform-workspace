@@ -9,7 +9,7 @@ resource "google_compute_network" "vpc_network" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork
 resource "google_compute_subnetwork" "kubernetes_subnet" {
   name                     = "kubernetes-subnet"
-  ip_cidr_range            = "10.0.0.0/20"
+  ip_cidr_range            = "10.0.0.0/19"
   region                   = local.environment_config.region
   network                  = google_compute_network.vpc_network.id
   project                  = local.environment_config.google_project
