@@ -1,5 +1,5 @@
 locals {
-  google_project  = "anshumantripathi-samyak"
+
   billing_project = "014B18-76E511-9E2113"
   services = [
     "cloudresourcemanager.googleapis.com",
@@ -7,6 +7,7 @@ locals {
     "compute.googleapis.com",
   ]
   environment_config = {
-    region = "us-central1"
+    region         = "us-central1"
+    google_project = "anshumantripathi-samyak"
   }
 }

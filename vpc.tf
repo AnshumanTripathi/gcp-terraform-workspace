@@ -1,7 +1,7 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network
 resource "google_compute_network" "vpc_network" {
-  project                 = local.google_project
-  name                    = "${local.google_project}-vpc-network"
+  project                 = local.environment_config.google_project
+  name                    = "${local.environment_config.google_project}-vpc-network"
   routing_mode            = "GLOBAL"
   auto_create_subnetworks = false
 }
@@ -12,6 +12,7 @@ resource "google_compute_subnetwork" "kubernetes_subnet" {
   ip_cidr_range            = "10.0.0.0/20"
   region                   = local.environment_config.region
   network                  = google_compute_network.vpc_network.id
+  project                  = local.environment_config.google_project
   private_ip_google_access = true
   secondary_ip_range {
     range_name    = "pods"
