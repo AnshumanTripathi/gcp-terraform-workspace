@@ -9,12 +9,6 @@ module "kubernetes-engine" {
   regional                   = true
   release_channel            = "UNSPECIFIED"
   enable_private_endpoint    = false
-  master_authorized_networks = [
-    {
-      cidr_block   = "${module.bastion.ip_address}/32"
-      display_name = "Bastion Host"
-    }
-  ]
   # Network config
   ip_range_pods                   = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[0].range_name
   ip_range_services               = google_compute_subnetwork.kubernetes_subnet.secondary_ip_range[1].range_name
